@@ -1,4 +1,4 @@
-import { Express } from "express";
+import { Express, Request, Response } from "express";
 import express from "express";
 import cors from 'cors'
 import { Router } from "./router/Router";
@@ -39,6 +39,10 @@ app.use(express.json())
 app.use(upload.single('file'))
 app.use(Router)
 StartDb()
+
+app.get("/",(req:Request,res:Response)=>{
+    res.json({message:"Welcome to my reporting app api"})
+})
 app.listen(3000,()=>{
     console.log("Server has started")
 })
