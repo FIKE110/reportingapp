@@ -5,12 +5,15 @@ import bcrypt from 'bcrypt'
 
 export async function createUser(req:Request,res:Response){
     try{
-    const {username,password,email,image}=req.body
+    const {username,password,email}=req.body
+    const data=req.file
     const newUser=await User.create({
         username:username,
         password:password,
         email:email,
-        image:image
+        image:data?.buffer,
+        image_mime:data?.mimetype,
+        image_name:data?.originalname
     })
 
     if(newUser){
@@ -56,7 +59,44 @@ export async function loginUserByAuth(req:Request,res:Response){
     else{
         res.status(404).json({error:"invalid username or password"})
     }}
-    catch(e){
-        res.json({error:e})
+    catch(e:any){
+        res.json({error:e.message})
+    }
+}
+
+export async function getUserProfileById(req:Request,res:Response){
+    try{
+        const {userId} =req.params
+        const user:any=await User.findByPk(parseInt(userId))
+        if(user){
+            res.json({
+                username:user.username,
+                imageurl:`${user.username}/image`
+            })
+        }
+        else{
+            res.json({error:"profile not found"})
+        }
+    }
+    catch(e:any){
+        res.json({error:e.message})
+    }
+}
+
+export async function getUserProfileImageById(req:Request,res:Response){
+    try{
+        const {username}=req.params
+        const user=await User.findOne({where:{username:username}})
+        if(user){
+            const {image,image_mime}:any=user
+            res.setHeader("Content-Type",image_mime)
+            res.send(image)
+        }
+        else{
+            res.status(404).json({error:"image not found"})
+        }
+    }
+    catch(e:any){
+        res.json({error:e.message})
     }
 }

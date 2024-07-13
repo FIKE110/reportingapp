@@ -1,16 +1,52 @@
 import { Request,Response } from "express";
-import { Postchema } from "../model/post";
-import { number } from "zod";
+import { Post, Postchema } from "../model/post";
 
-export function getPosts(req:Request,res:Response){
-    res.send("getting reposnse")
+export async function createPost(req:Request,res:Response){
+    try{
+    const {user_id,title,category,location,unique_user_id}=req.body
+    if(req.file){
+        const file=req.file
+        Postchema.parse({user_id:parseInt(user_id),title,category , location})
+        const newPost=await Post.create({user_id,title,category,location,image:file.buffer,
+            image_name:file.originalname,image_mime:file.mimetype
+        }) 
+        if(newPost){
+            res.status(201).json({message:"Post succesfully uploaded"})
+        }
+        else{
+            res.json({error:"Image not uploaded"})
+        }
+    }else{
+        res.json({error:"No profile image uploaded"})
+        }
+    }
+    catch(e:any){
+        res.json({error:e.message})
+    }
 }
 
-export function createPost(req:Request,res:Response){
+
+export async function getPostImage(req:Request,res:Response){
     try{
-    const {user_id,title,category,location}=req.body
-    Postchema.parse({user_id:parseInt(user_id),title,category , location})
-    res.send("creating post")
+        const {postId}=req.params
+        const {image,image_mime}:any=await Post.findByPk(postId)
+        res.setHeader("content-type",image_mime)
+        res.send(image)
+    }
+    catch(e:any){
+        res.json({error:e})
+    }
+}
+
+export async function getPosts(req:Request,res:Response){
+    try{
+        let posts:any[]=[]
+        const getPosts:any[]=await Post.findAll()
+        getPosts.map(item=>{
+            const {id,user_id,location,created_at,title,category,image}=item
+            getPosts.push({id,user_id,location,created_at,title,category,imageurl:`${id}/image`})
+        })
+        res.json({posts:posts})
     }
     catch(e:any){
         res.json({error:e.message})

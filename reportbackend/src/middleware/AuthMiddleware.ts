@@ -3,11 +3,14 @@ import { verifyJwtService } from "../services/jwt";
 
 export function AuthMiddleware(req:Request,res:Response,next:NextFunction){
     try{
-        const token=req.headers.authorization
+        const token=req.headers.authorization?.split(" ")[1]
         if(token){
             const payload=verifyJwtService(token)
-            req.body.payload=payload
+            req.body.unique_user_id=payload
             next()
+        }
+        else{
+            res.status(404).json({error:"token not sent"})
         }
     }
     catch(e:any){

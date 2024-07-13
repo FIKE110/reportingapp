@@ -13,7 +13,12 @@ export async function CreateUserMiddleware(req:Request,res:Response,next:NextFun
         const {username,password,email}=req.body
         const auth=requestSchema.parse({username,password,email})
         req.body.password=await hashPassword(auth.password)
-        next()
+        if(req.file){
+            next()
+        }
+        else{
+            res.json({error:"no profile image Uploaded"})
+        }
     }
     catch(e:any){
         res.status(404).json({error:e.message})

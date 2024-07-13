@@ -42,10 +42,18 @@ export const Post=db.define("Post",{
         allowNull:true
     },
     image:{
-        type:DataTypes.BLOB,
+        type:DataTypes.BLOB('long'),
         allowNull:false,
+    },
+    image_mime:{
+        type:DataTypes.STRING,
+        allowNull:false
+    },
+    image_name:{
+        type:DataTypes.STRING,
+        allowNull:false
     }
-})
+},{timestamps:true})
 
 Post.belongsTo(User,{
     foreignKey:'user_id'
