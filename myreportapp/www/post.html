@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+
+    <!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    -->    
+    <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/post.css">
+        <link rel="stylesheet" href="css/general.css">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div class="app">
+            <header>
+                <h1>Post</h1>
+            </header>
+        <main id="post">
+            <h2>Post an Incident</h2>
+            <form id="post-form">
+                <textarea placeholder="Describe the incident"></textarea>
+                <div>
+                    Choose an incident type:
+                    <select id="incident-type" name="incident-type">
+                      <option value="fire">Fire</option>
+                      <option value="medical">Medical Emergency</option>
+                      <option value="theft">Theft</option>
+                      <option value="accident">Accident</option>
+                      <option value="harassment">Harassment</option>
+                      <option value="vandalism">Vandalism</option>
+                      <option value="power-outage">Power Outage</option>
+                      <option value="other">Other</option>
+                    </select>
+            </div>
+            <div style="display: flex;gap:10px" id="add-btn-container">
+                <button id="add-image-btn" style="flex: 1;"><img src='img/plus.svg'><p>Add Image with Camera</p></button>
+                <button id="add-image-gallery-btn" style="flex: 1;"><img src='img/plus.svg'><p>Add Image with Gallery</p></button>
+            </div>
+                <div id="send-form-btn-container">
+                    <button id="send-form-btn">Send form</button>
+                </div>
+                <img id="post-image" src="" />
+            </form>
+        </main>
+<footer>
+<nav class="bottom-nav">
+    <ul>
+        <div class="nav-item" id="homebtn">
+            <img src="img/house.svg" >
+        </div>
+        <div class="nav-item" id="postbtn">
+            <img src="img/plus.svg" />
+        </div>
+        <div class="nav-item" id="userbtn">
+            <img src="img/user.svg" />
+        </div>
+        <div class="nav-item" id="notifybtn">
+            <img src="img/bell.svg" />
+        </div>
+    </ul>
+</nav>
+</footer>
+</div>
+        <script src="cordova.js"></script>
+        <script src="js/route.js"></script>
+        <script src="js/post.js"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
