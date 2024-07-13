@@ -7,7 +7,6 @@ export function AuthMiddleware(req:Request,res:Response,next:NextFunction){
         if(token){
             const payload:any=verifyJwtService(token)
             req.body.unique_user_id=payload.id
-            console.log(payload)
             next()
         }
         else{

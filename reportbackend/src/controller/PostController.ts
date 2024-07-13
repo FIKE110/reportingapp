@@ -1,5 +1,5 @@
 import { Request,Response } from "express";
-import { Post, Postchema } from "../model/post";
+import { Post } from "../model/post";
 
 export async function createPost(req:Request,res:Response){
     try{
