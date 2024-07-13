@@ -25,7 +25,7 @@ export async function getPostImage(req:Request,res:Response){
     try{
         const {postId}=req.params
         const {image,image_mime}:any=await Post.findByPk(postId)
-        res.setHeader("content-type",image_mime)
+        res.setHeader("Content-Type",image_mime)
         res.send(image)
     }
     catch(e:any){
@@ -39,7 +39,7 @@ export async function getPosts(req:Request,res:Response){
         const getPosts:any[]=await Post.findAll()
         getPosts.map(item=>{
             const {id,user_id,location,created_at,title,category,image}=item
-            getPosts.push({id,user_id,location,created_at,title,category,imageurl:`${id}/image`})
+            posts.push({id,user_id,location,created_at,title,category,imageurl:`${id}/image`})
         })
         res.json({posts:posts})
     }

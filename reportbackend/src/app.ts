@@ -3,7 +3,7 @@ import express from "express";
 import cors from 'cors'
 import { Router } from "./router/Router";
 import { StartDb } from "./db";
-import { User } from "./model/user"
+import 'dotenv/config'
 import multer from "multer";
 
 const storage=multer.memoryStorage(
@@ -43,6 +43,6 @@ StartDb()
 app.get("/",(req:Request,res:Response)=>{
     res.json({message:"Welcome to my reporting app api"})
 })
-app.listen(3000,()=>{
+app.listen(process.env.PORT || 3000,()=>{
     console.log("Server has started")
 })

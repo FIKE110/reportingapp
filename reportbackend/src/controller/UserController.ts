@@ -17,7 +17,7 @@ export async function createUser(req:Request,res:Response){
     })
 
     if(newUser){
-        res.json({username,email,message:"user successfully created"})
+        res.status(201).json({username,email,message:"user successfully created"})
     }
     else{
         res.json({error:"could not be created"})
