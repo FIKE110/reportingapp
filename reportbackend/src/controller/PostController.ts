@@ -3,21 +3,16 @@ import { Post, Postchema } from "../model/post";
 
 export async function createPost(req:Request,res:Response){
     try{
-    const {user_id,title,category,location,unique_user_id}=req.body
-    if(req.file){
-        const file=req.file
-        Postchema.parse({user_id:parseInt(user_id),title,category , location})
-        const newPost=await Post.create({user_id,title,category,location,image:file.buffer,
-            image_name:file.originalname,image_mime:file.mimetype
-        }) 
+    const {title,category,location,unique_user_id}=req.body
+    const file=req.file
+    const newPost=await Post.create({user_id:unique_user_id,title,category,location,image:file?.buffer,
+        image_name:file?.originalname,image_mime:file?.mimetype
+    }) 
         if(newPost){
             res.status(201).json({message:"Post succesfully uploaded"})
         }
         else{
             res.json({error:"Image not uploaded"})
-        }
-    }else{
-        res.json({error:"No profile image uploaded"})
         }
     }
     catch(e:any){

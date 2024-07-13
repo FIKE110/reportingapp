@@ -49,7 +49,7 @@ export async function loginUserByAuth(req:Request,res:Response){
     if(user){
         const model=user.toJSON()
         if(await bcrypt.compare(password,model.password)){
-            const jwt=signJwtSerivce({id:model.email})
+            const jwt=signJwtSerivce({id:model.id})
             res.json({token:jwt})
         }
         else{

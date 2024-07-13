@@ -5,8 +5,9 @@ export function AuthMiddleware(req:Request,res:Response,next:NextFunction){
     try{
         const token=req.headers.authorization?.split(" ")[1]
         if(token){
-            const payload=verifyJwtService(token)
-            req.body.unique_user_id=payload
+            const payload:any=verifyJwtService(token)
+            req.body.unique_user_id=payload.id
+            console.log(payload)
             next()
         }
         else{
