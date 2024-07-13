@@ -4,7 +4,6 @@ import { AuthMiddleware } from "../middleware/AuthMiddleware";
 import { createPostMiddleware } from "../middleware/PostMiddleware";
 
 export const PostRouter=express.Router()
-PostRouter.use(AuthMiddleware)
-PostRouter.get('/',getPosts)
-PostRouter.post('/',createPostMiddleware,createPost)
+PostRouter.get('/',AuthMiddleware,getPosts)
+PostRouter.post('/',AuthMiddleware,createPostMiddleware,createPost)
 PostRouter.get('/:postId/image',getPostImage)
