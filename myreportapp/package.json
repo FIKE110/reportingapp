@@ -16,7 +16,9 @@
   "devDependencies": {
     "cordova-android": "^13.0.0",
     "cordova-browser": "^7.0.0",
-    "cordova-plugin-camera": "^7.0.0"
+    "cordova-plugin-camera": "^7.0.0",
+    "cordova-plugin-geolocation": "^5.0.0",
+    "cordova-plugin-x-toast": "^2.7.3"
   },
   "cordova": {
     "platforms": [
@@ -26,6 +28,10 @@
     "plugins": {
       "cordova-plugin-camera": {
         "ANDROIDX_CORE_VERSION": "1.8.0"
+      },
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
       }
     }
   },

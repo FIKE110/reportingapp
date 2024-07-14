@@ -28,17 +28,19 @@ main{
 
 .post-details p{
     padding: 5px 0px;
-    font-size: small;
+    font-size: medium;
 }
 
 .post-user-details img{
     border-radius: 50%;
+    width:100%;
 }
 
 .post-img{
     width:100%;
-    height: auto;
+    height: 200px;
     border-radius:20px ;
+    object-fit: cover;
 }
 
 .post-detail{
@@ -47,8 +49,27 @@ main{
     text-align: left;
     width:fit-content;
     max-height: 80px;
-    overflow: scroll;
     text-overflow: ellipsis;
-    font-size: small;
+    font-size: medium;
+    font-weight: 500;
 }
 
+
+.spinnerspinner{
+    width:50px;
+    height: 50px;
+    border-radius: 50%;
+    border-top:2px black solid;
+    border-left:2px black solid;
+    border-radius: 50%;
+    animation: spin 500ms linear infinite;
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
