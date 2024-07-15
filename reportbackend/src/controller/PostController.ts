@@ -1,5 +1,6 @@
 import { Request,Response } from "express";
 import { Post } from "../model/post";
+import { User } from "../model/user";
 
 export async function createPost(req:Request,res:Response){
     try{
@@ -38,12 +39,30 @@ export async function getPosts(req:Request,res:Response){
         let posts:any[]=[]
         const getPosts:any[]=await Post.findAll()
         getPosts.map(item=>{
-            const {id,user_id,location,created_at,title,category,image}=item
-            posts.push({id,user_id,location,created_at,title,category,imageurl:`${id}/image`})
+            const {id,user_id,location,createdAt,title,category}=item
+            posts.push({id,user_id,location,createdAt,title,category,imageurl:`${id}/image`})
         })
         res.json({posts:posts})
     }
     catch(e:any){
         res.json({error:e.message})
+    }
+}
+
+
+export async function getPostsById(req:Request,res:Response){
+    const {unique_user_id} = req.body
+
+
+    try{
+        const post=await Post.findAll({
+            where:{
+                user_id:unique_user_id
+            },
+        })
+        res.json(post)
+    }
+    catch(e){
+        console.log(e)
     }
 }

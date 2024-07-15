@@ -30,12 +30,12 @@ export async function createUser(req:Request,res:Response){
 
 export async function getUser(req:Request,res:Response){
     const {id}=req.body.userId
-    const newUser=await User.findOne({
+    const user=await User.findOne({
         where:{id:id}
     })
 
-    if(newUser){
-        res.json(newUser)
+    if(user){
+        res.json(user)
     }
     else{
         res.status(404).json({error:"User not found"})
@@ -98,5 +98,25 @@ export async function getUserProfileImageById(req:Request,res:Response){
     }
     catch(e:any){
         res.json({error:e.message})
+    }
+}
+
+export async function getUserByToken(req:Request,res:Response){
+    try{
+        const {unique_user_id}=req.body
+        console.log(239230239,unique_user_id)
+        const user:any=await User.findByPk(unique_user_id)
+        if(user){
+            res.json({
+                username:user.username,
+                imageurl:`${user.username}/image`
+            })
+        }
+        else{
+            res.json({error:"profile not found"})
+        }
+    }
+    catch(e){
+        console.log(e)
     }
 }

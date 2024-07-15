@@ -10,7 +10,7 @@ export async function createPostMiddleware(req:Request,res:Response,next:NextFun
         next()
     }
     else{
-        res.json({error:'No profile image uploaded'})
+        res.json({error:'No post image uploaded'})
     }
        
    }
