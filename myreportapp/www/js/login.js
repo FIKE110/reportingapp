@@ -7,6 +7,7 @@ SpinnerBtnText.addEventListener('click',()=>{
 })
 
 document.addEventListener('deviceready', function() {
+
     window.FirebasePlugin.onMessageReceived(function(message) {
         console.log(`Message received ${JSON.stringify(message)}`);
 
@@ -28,10 +29,8 @@ document.addEventListener('deviceready', function() {
         console.log("Error retrieving FCM token: " + err);
     });
 
-    window.FirebasePlugin.grantPermission(function() {
-        alert("Notification permission granted by the user");
-    }, function(error) {
-        alert("Error granting notification permission: " + error);
+    window.FirebasePlugin.grantPermission(function(hasPermission){
+        console.log("Permission was " + (hasPermission ? "granted" : "denied"));
     });
 
 }, false);

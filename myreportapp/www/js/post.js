@@ -121,12 +121,6 @@ document.getElementById('capturePhoto').addEventListener('click', function() {
 });
 
 function getNavLocation(){
-    window.FirebasePlugin.getToken(function(token) {
-        tokenBox.value=token;
-            // You can store this token or send it to your server for further use
-        }, function(err) {
-            alert("Error retrieving FCM token: " + err);
-        });
     navigator.geolocation.getCurrentPosition(onSuccess, onError, {
         enableHighAccuracy: true,
         timeout: 5000,
