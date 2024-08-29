@@ -6,8 +6,7 @@ import bcrypt from 'bcrypt'
 
 export async function createUser(req:Request,res:Response){
     try{
-        const {username,password,email}=req.body
-        const data=req.file
+        const {username,password,email,token}=req.body
 
         const existingUser=await User.findOne({
             where:[or({
@@ -20,7 +19,8 @@ export async function createUser(req:Request,res:Response){
         const newUser:any=await User.create({
             username:username,
             password:password,
-            email:email
+            email:email,
+            token:token
         })
 
         res.status(201).json({username:newUser.username,email:newUser.email,message:"user successfully created"})

@@ -18,5 +18,9 @@ export const User=db.define('User',{
         validate:{
             isEmail:true
         }
+    },
+    token:{
+        type:DataTypes.TEXT,
+        allowNull:true
     }
 },{timestamps:true,freezeTableName:true})

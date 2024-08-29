@@ -1,13 +1,17 @@
 import { Request,Response } from "express";
 import { Post } from "../model/post";
+import { sendGlobalNotification } from "../services/notifications";
+import { User } from "../model/user";
 
 export async function createPost(req:Request,res:Response){
     try{
     const {title,category,location,unique_user_id,content,image}=req.body
-    const newPost=await Post.create({user_id:unique_user_id,title,category,location,content,image
-    }) 
+    const newPost=await Post.create({user_id:unique_user_id,title,category,location,content,image})
+    const users :any[]=await User.findAll({attributes:['token']})
+    const tokens=users.map(user=>user.email)
         if(newPost){
             res.status(201).json({message:"Post succesfully uploaded"})
+            sendGlobalNotification(title,content.substring(0,20),tokens)
         }
         else{
             res.json({error:"Post not uploaded"})
