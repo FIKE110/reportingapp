@@ -18,17 +18,5 @@ export const User=db.define('User',{
         validate:{
             isEmail:true
         }
-    },
-    image:{
-        type:DataTypes.BLOB,
-        allowNull:true,
-    },
-    image_mime:{
-        type:DataTypes.STRING,
-        allowNull:true
-    },
-    image_name:{
-        type:DataTypes.STRING,
-        allowNull:true
     }
 },{timestamps:true,freezeTableName:true})

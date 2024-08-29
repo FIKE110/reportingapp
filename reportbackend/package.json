@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx --watch src/app.ts",
     "build": "npx tsc",
-    "start" : "node dist/app.js"
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +20,7 @@
     "multer": "1.4.5-lts.1",
     "pg": "^8.12.0",
     "pg-hstore": "^2.3.4",
+    "reportbackend": "file:",
     "sequelize": "^6.37.3",
     "zod": "^3.23.8"
   },

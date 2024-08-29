@@ -1,23 +1,29 @@
 import { Request,Response } from "express";
 import { User } from "../model/user";
 import { signJwtSerivce } from "../services/jwt";
+import { or } from "sequelize";
 import bcrypt from 'bcrypt'
 
 export async function createUser(req:Request,res:Response){
     try{
-    const {username,password,email}=req.body
-    const data=req.file
-    const newUser=await User.create({
-        username:username,
-        password:password,
-        email:email,
-        image:data?.buffer,
-        image_mime:data?.mimetype,
-        image_name:data?.originalname
-    })
+        const {username,password,email}=req.body
+        const data=req.file
 
-    if(newUser){
-        res.status(201).json({username,email,message:"user successfully created"})
+        const existingUser=await User.findOne({
+            where:[or({
+                username:username,
+            },{email:email})]        
+        })
+
+
+    if(!existingUser){
+        const newUser:any=await User.create({
+            username:username,
+            password:password,
+            email:email
+        })
+
+        res.status(201).json({username:newUser.username,email:newUser.email,message:"user successfully created"})
     }
     else{
         res.json({error:"could not be created"})
@@ -50,7 +56,7 @@ export async function loginUserByAuth(req:Request,res:Response){
         const model=user.toJSON()
         if(await bcrypt.compare(password,model.password)){
             const jwt=signJwtSerivce({id:model.id})
-            res.json({token:jwt})
+            res.json({token:`${jwt}`})
         }
         else{
             res.json({error:"invalid username or password"})
@@ -71,7 +77,6 @@ export async function getUserProfileById(req:Request,res:Response){
         if(user){
             res.json({
                 username:user.username,
-                imageurl:`${user.username}/image`
             })
         }
         else{
@@ -104,12 +109,11 @@ export async function getUserProfileImageById(req:Request,res:Response){
 export async function getUserByToken(req:Request,res:Response){
     try{
         const {unique_user_id}=req.body
-        console.log(239230239,unique_user_id)
         const user:any=await User.findByPk(unique_user_id)
         if(user){
             res.json({
                 username:user.username,
-                imageurl:`${user.username}/image`
+                email:user.email
             })
         }
         else{

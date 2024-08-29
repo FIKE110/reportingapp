@@ -20,6 +20,13 @@ export const Post=db.define("Post",{
             notEmpty:true
         }
     },
+    content:{
+        type:DataTypes.TEXT,
+        allowNull:false,
+        validate:{
+            notEmpty:true,
+        }
+    },
     category:{
         type:DataTypes.ENUM,
         values: ["Physical Security",
@@ -41,17 +48,8 @@ export const Post=db.define("Post",{
         type:DataTypes.STRING(255),
         allowNull:true
     },
-    image:{
-        type:DataTypes.BLOB('long'),
-        allowNull:false,
-    },
-    image_mime:{
-        type:DataTypes.STRING,
-        allowNull:false
-    },
-    image_name:{
-        type:DataTypes.STRING,
-        allowNull:false
+    image:{type:DataTypes.TEXT,
+        allowNull:true
     }
 },{timestamps:true})
 
@@ -62,6 +60,7 @@ Post.belongsTo(User,{
 export const Postchema=z.object({
     user_id:z.number().min(1),
     title:z.string().min(1),
+    content:z.string().min(1).optional(),
     category:z.enum(
         ["Physical Security",
         "Assault",
@@ -75,6 +74,8 @@ export const Postchema=z.object({
         "Health",
         "Fighting",
         "Rioting",
-        "Accident"]),
-        location:z.string().min(1)
+        "Accident"],{message:"Please select a category"}),
+        location:z.string().min(1),
+        image:z.string().base64({message:"Not a valid base64"}).optional()
+
 })

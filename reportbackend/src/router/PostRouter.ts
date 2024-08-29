@@ -1,10 +1,11 @@
 import express from "express";
-import { createPost, getPosts, getPostImage, getPostsById } from "../controller/PostController";
+import { createPost, deletePost, editPost, getPosts, getPostsById } from "../controller/PostController";
 import { AuthMiddleware } from "../middleware/AuthMiddleware";
-import { createPostMiddleware } from "../middleware/PostMiddleware";
+import { createPostMiddleware, editPostMiddleware } from "../middleware/PostMiddleware";
 
 export const PostRouter=express.Router()
 PostRouter.get('/',AuthMiddleware,getPosts)
 PostRouter.post('/',AuthMiddleware,createPostMiddleware,createPost)
 PostRouter.get('/user',AuthMiddleware,getPostsById)
-PostRouter.get('/:postId/image',getPostImage)
+PostRouter.put('/:postId',editPostMiddleware,AuthMiddleware,editPost)
+PostRouter.delete('/:postId',AuthMiddleware,deletePost)
