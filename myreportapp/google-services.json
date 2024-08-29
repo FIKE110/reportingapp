@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "182179740239",
+    "project_id": "bingcompersonal",
+    "storage_bucket": "bingcompersonal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182179740239:android:588e91f57b842dc70d083a",
+        "android_client_info": {
+          "package_name": "com.fortune.FortunePersonalApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZcJ3_yorp3g6AIQecHcO4JwGsq63Hozw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:182179740239:android:a508a9d44c65c3a20d083a",
+        "android_client_info": {
+          "package_name": "com.report.myreportapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZcJ3_yorp3g6AIQecHcO4JwGsq63Hozw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

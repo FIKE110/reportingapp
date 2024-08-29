@@ -29,6 +29,16 @@ header{
     width: 100vw;
 }
 
+#location{
+    width:100%;
+    height:20px;
+    font-size: 15px;
+    padding:23px 20px;
+    border-radius: 10px;
+    border: none;
+ 
+}
+
 header h1{
     font-size: 22px;
 }
@@ -88,4 +98,118 @@ footer{
     justify-content: center;
     align-items: center;
     border-color: #ff4b2b;
+}
+
+/* Basic styles for the search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the search input */
+.search-input {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 25px 0 0 25px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+/* Styles for the search button */
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6347;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+    background-color: #ff4500;
+}
+
+/* Focus effect for the search input */
+.search-input:focus {
+    background-color: #e9e9e9;
+}
+
+/* Basic styles for the search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for the search select dropdown */
+.search-select {
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-radius: 25px 0 0 25px;
+    background-color: #f1f1f1;
+    color: #333;
+    cursor: pointer;
+    appearance: none; /* Remove default dropdown arrow */
+}
+
+/* Styles for the search input */
+.search-input {
+    flex: 1;
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+/* Styles for the search button */
+.search-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #ff6347;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 0 25px 25px 0;
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the search button */
+.search-button:hover {
+    background-color: #ff4500;
+}
+
+/* Focus effect for the search input */
+.search-input:focus {
+    background-color: #e9e9e9;
+}
+
+/* Additional styles for the dropdown */
+.search-select {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg%20xmlns="http://www.w3.org/2000/svg"%20viewBox="0%200%2024%2024"%20width="16px"%20height="16px"><path%20fill="none"%20stroke="%23FF6347"%20stroke-width="2"%20d="M8%2010%20l4%204%204-4"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
 }

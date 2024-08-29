@@ -28,7 +28,8 @@ main{
 
 .post-details p{
     padding: 5px 0px;
-    font-size: medium;
+    font-size:13px;
+
 }
 
 .post-user-details img{
@@ -44,7 +45,7 @@ main{
 }
 
 .post-detail{
-    padding:7px 0px ;
+    padding:10px 0px ;
     margin-bottom: 10px;
     text-align: left;
     width:fit-content;

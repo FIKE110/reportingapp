@@ -4,16 +4,17 @@ const BtnSpinner=document.getElementById("spinner")
 const InputUsername=document.getElementById("form-username")
 const InputPassword=document.getElementById("form-password")
 
-const url="https://reportingapp.onrender.com"
+let url="https://reportingapp.onrender.com"
 const signupurl="user/register"
 const loginurl="user/login"
+//url="http://localhost:3300"
+//url="http://192.168.174.176:3300"
 
 SpinnerButton[0].addEventListener('click',async ()=>{
     try{
     startSpin()
     if(document.getElementById("form-email")){
         await register()
-        await login()
     }
     else{
         await login()
@@ -62,7 +63,8 @@ async function register(){
         body:JSON.stringify({
         username:InputUsername.value,
         password:InputPassword.value,
-        email:InputEmail.value
+        email:InputEmail.value,
+        token:localStorage.getItem("FCM")
     })})
     const data=await res.json()
     Toast(parseErrorMessage(data))
@@ -72,18 +74,19 @@ async function register(){
         },300
         )
     }
-    console.log(res)
 }
 
 function startSpin(){
     SpinnerBtnText.style.display="none";
     BtnSpinner.style.display="block"
+    SpinnerButton[0].disabled=true
 }
 
 function stopSpin(){
     SpinnerBtnText.style.display="block";
     BtnSpinner.style.display="none"
     //BtnSpinner.style.opacity=0.4
+    SpinnerButton[0].disabled=false
 }
 
 

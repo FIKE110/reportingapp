@@ -7,8 +7,7 @@ const routeItems=document.getElementsByClassName("nav-item")
 const routeMap=[
     {route:'/home.html',name:'homebtn',activeImg:'img/house2.svg'},
     {route:'/post.html',name:'postbtn',activeImg:'img/plus2.svg'},
-    {route:'/user.html',name:'userbtn',activeImg:'img/user2.svg'},
-    {route:'/notification.html',name:'notifybtn',activeImg:'img/bell2.svg'}
+    {route:'/profile.html',name:'userbtn',activeImg:'img/user2.svg'},
 ]
 
 HomeBtn.addEventListener('click',e=>{
@@ -19,12 +18,10 @@ PostBtn.addEventListener('click',e=>{
     window.location='/post.html'
 })
 
-NotificationBtn.addEventListener('click',e=>{
-    window.location='/notification.html'
-})
+
 
 UserBtn.addEventListener('click',e=>{
-    window.location='/user.html'
+    window.location='/profile.html'
 })
 
 const navActiveSelect=()=>{

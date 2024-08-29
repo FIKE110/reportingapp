@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/general.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <h1>User Profile</h1>
+            <button id="logoutButton">Logout</button>
+        </div>
+        <div class="profile-details">
+            <h2>Personal Details</h2>
+            <br />
+            <p><strong>Username :</strong> <span id="userName"></span></p>
+            <br />
+            <p><strong>Email :</strong> <span id="userEmail"></span></p>
+        </div>
+        <div class="user-posts">
+            <h1 style="padding-bottom: 30px;">My Posts</h1>
+            
+            <div class="posts" style="margin-bottom:10px;">
+                <div class="not-found">
+                    <div id="spinner-container" style='margin-top:40px'>
+                        <h2>Fetching data</h2>
+                        <div id="spinner" class="spinnerspinner">
+                        </div>
+                    </div>
+                </div>
+                <div class="not-found">
+                    <div id="spinner-container">
+                        <h2 style="padding: 20px" ></h2>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <footer>
+        <nav class="bottom-nav">
+            <ul>
+            <div class="nav-item active-nav-item"  id="homebtn">
+                <img src="img/house.svg" >
+            </div>
+            <div class="nav-item" id="postbtn">
+                <img src="img/plus.svg" />
+            </div>
+            <div class="nav-item" id="userbtn">
+                <img src="img/user.svg" />
+            </div>
+            </ul>
+        </nav>
+        </footer>
+        <div id="loadingModal" class="modal">
+            <div class="modal-content">
+                <div class="spinner"></div>
+                <p>Loading, please wait...</p>
+            </div>
+        </div>
+        <div id="updateModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeUpdateModal()">&times;</span>
+                <h2>Update Post</h2>
+                <form id="updateForm" enctype="multipart/form-data">
+                    <input type="hidden" id="postId" name="postId">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content"></textarea>
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" accept="image/*">
+                    <img id="imagePreview" src="" alt="Image Preview" style="display:none; margin-top:10px; width:200px; height:auto;">
+                    <button style="margin-top:20px" type="submit">Update</button>
+                </form>
+            </div>
+        </div>
+        <script src="js/route.js"></script>
+        <script src="js/toastify.js" ></script>
+    <script src="js/profiles.js"></script>
+     <script src="js/loc.js" ></script>
+</body>
+</html>
