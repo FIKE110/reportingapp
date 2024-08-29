@@ -61,6 +61,7 @@ postForm.addEventListener('submit',async e=>{
            myToast.showToast();
        alert("Succesfully uploaded")
        postForm.reset()
+       document.getElementById('imagePreview').src="";
     }
     else{
         Toast("Error occured not uploaded")
